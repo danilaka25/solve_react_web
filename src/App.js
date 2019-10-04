@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
+import CardForm from './components/CardForm';
+import DisplayCardInfo from './components/DisplayCardInfo';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+class CardApp extends React.Component {
+  state = {};
+  updateData = (FirstName, LastName, CardNunmber, formValid, paySystem) => {
+    this.setState({
+      FirstName: FirstName,
+      LastName: LastName,
+      CardNunmber: CardNunmber,
+      formValid: formValid,
+      paySystem: paySystem
+    });
+  };
+
+  componentDidUpdate() {
+    console.log(this.state);
+  }
+
+  render() {
+    return (
+      <div className="App container">
+        {" "}
+        <div className="row">
+          {" "}
+          <div className="col-md-8">
+            {" "}
+            <CardForm updateData={this.updateData} />{" "}
+          </div>{" "}
+          <div className="col-md-4">
+            {" "}
+            <DisplayCardInfo
+              FirstName={this.state.FirstName}
+              LastName={this.state.LastName}
+              CardNunmber={this.state.CardNunmber}
+              formValid={this.state.formValid}
+              paySystem={this.state.paySystem}
+            />{" "}
+          </div>{" "}
+        </div>{" "}
+      </div>
+    );
+  }
 }
 
-export default App;
+
+
+
+ 
+
+export default CardApp;

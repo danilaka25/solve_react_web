@@ -1,22 +1,29 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card_row {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+
+.card_row  .form-group:nth-child(1n){
+  flex: 6;
+
+}
+
+.card_row  .form-group:nth-child(2n){
+  flex: 2;
+  padding: 0 30px;
+}
+
+
+.card_row  .form-group:nth-child(3n){
+  flex: 1;
+}
+
+
+.has-error input {
+    border-color:red;
+}
+
+.form-control:focus {
+    box-shadow: none !important;
 }
