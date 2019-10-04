@@ -1,11 +1,10 @@
-import React from 'react';
-
+import React from "react";
 
 class CheckCard extends React.Component {
   state = {
     paySystem: ""
   };
-  
+
   componentDidUpdate(prevProps, prevState) {
     if (this.props.CardNunmber.length == "16") {
       let count = this.props.CardNunmber.substring(0, 4);
@@ -20,15 +19,13 @@ class CheckCard extends React.Component {
           });
         }
       }
-      this.props.updateData(
-        this.state.paySystem
-      );
+      this.props.updateData(this.state.paySystem);
     }
   }
   render() {
+    console.log("(render) CheckCard");
     return <div> </div>;
   }
 }
-
 
 export default CheckCard;

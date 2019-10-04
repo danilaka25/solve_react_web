@@ -6,7 +6,6 @@ class DisplayCardInfo extends React.Component {
     timerId: undefined,
     startAt: undefined
   };
-  
 
   startTimer = () => {
     const timerId = setTimeout(() => {
@@ -43,12 +42,13 @@ class DisplayCardInfo extends React.Component {
   };
 
   render() {
-    
+    console.log("(render) DisplayCardInfo");
+
     if (!this.state.visible) {
       return null;
     }
 
-    let toShow = (this.props.formValid === "true") ? true : false;
+    let toShow = this.props.formValid === "true" ? true : false;
 
     return (
       <div>

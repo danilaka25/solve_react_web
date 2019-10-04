@@ -24,6 +24,7 @@ class CardApp extends React.Component {
   }
 
   render() {
+    console.log('(render) CardApp')
     return (
       <div className="App container">
         {" "}
@@ -49,9 +50,5 @@ class CardApp extends React.Component {
   }
 }
 
-
-
-
- 
 
 export default CardApp;

@@ -1,5 +1,5 @@
 import React from "react";
-import CheckCard from './CheckCard';
+import CheckCard from "./CheckCard";
 
 import PropTypes from "prop-types";
 
@@ -28,10 +28,10 @@ class CardForm extends React.Component {
         FirstName: "",
         LastName: "",
         SecretQuestion: "",
-        SecretAnswer: ""
+        SecretAnswer: "",
       },
       formValid: false,
-      paySystem: "--"
+      paySystem: "--",
     };
   }
 
@@ -40,7 +40,7 @@ class CardForm extends React.Component {
     const value = e.target.value;
     this.setState(
       {
-        [name]: value
+        [name]: value,
       },
       () => {
         this.validateField(name, value);
@@ -141,22 +141,19 @@ class CardForm extends React.Component {
       FirstNameValid: FirstNameValid,
       LastNameValid: LastNameValid,
       SecretQuestionValid: SecretQuestionValid,
-      SecretAnswerValid: SecretAnswerValid
+      SecretAnswerValid: SecretAnswerValid,
     });
   }
 
-
   // zzz Не понял что тут происходит. Перегруженная конструкция, я бы подумал над упрощением
 
-   
-    updateData = paySystem => {
-      if (this.state.paySystem !== paySystem) {
-        this.setState({
-          paySystem: paySystem
-        });
-      }
-    };
-   
+  updateData = paySystem => {
+    if (this.state.paySystem !== paySystem) {
+      this.setState({
+        paySystem: paySystem,
+      });
+    }
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -165,43 +162,25 @@ class CardForm extends React.Component {
       // this.state.CardExpirationDateValid &&
       // this.state.cvvValid &&
       this.state.FirstNameValid &&
-      this.state.LastNameValid 
+      this.state.LastNameValid
       // this.state.SecretQuestionValid &&
       // this.state.SecretAnswerValid
 
-
- // zzz  6) Думаю эта функция работает, но выглядит неправильно с точки зрения чистого кода
-
+      // zzz  6) Думаю эта функция работает, но выглядит неправильно с точки зрения чистого кода
     ) {
-      this.setState(
-        {
-          formValid: "true"
-        } 
-      );
-    } 
-    else {
-
-   
-
-      this.setState(
-        {
-          formValid: "false"
-        }
-      );
+      this.setState({
+        formValid: "true",
+      });
+    } else {
+      this.setState({
+        formValid: "false",
+      });
     }
-
-    
-
-
-     
   };
 
-
   componentDidUpdate(prevProps, prevState) {
-
-
     if (prevState === this.state) {
-      return
+      return;
     }
 
     this.props.updateData(
@@ -211,14 +190,14 @@ class CardForm extends React.Component {
       this.state.formValid,
       this.state.paySystem // post
     );
-
-}
+  }
 
   errorClass(error) {
     return error.length === 0 ? "" : "has-error";
   }
 
   render() {
+    console.log("(render) CardForm");
     return (
       <div>
         {" "}
@@ -348,7 +327,7 @@ class CardForm extends React.Component {
             Sign up{" "}
           </button>{" "}
         </form>{" "}
-      {/* zzz  5) Пропсы с маленькой буквы как и переменные */}
+        {/* zzz  5) Пропсы с маленькой буквы как и переменные */}
         <CheckCard
           CardNunmber={this.state.CardNunmber}
           updateData={this.updateData}
@@ -368,7 +347,7 @@ CardForm.propTypes = {
   FirstName: PropTypes.string,
   LastName: PropTypes.string,
   SecretQuestion: PropTypes.string,
-  SecretAnswer: PropTypes.string
+  SecretAnswer: PropTypes.string,
 };
 
 CardForm.defaultProps = {
@@ -378,8 +357,7 @@ CardForm.defaultProps = {
   FirstName: "First Name",
   LastName: "Last Name",
   SecretQuestion: "Secret Question",
-  SecretAnswer: "Secret Answer"
+  SecretAnswer: "Secret Answer",
 };
-
 
 export default CardForm;
