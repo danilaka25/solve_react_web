@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 
 class DisplayCardInfo extends React.Component {
   state = {
@@ -25,9 +27,9 @@ class DisplayCardInfo extends React.Component {
 
   componentDidUpdate = prevProps => {
     if (
-      prevProps.FirstName === this.props.FirstName &&
-      prevProps.LastName === this.props.LastName &&
-      prevProps.CardNunmber === this.props.CardNunmber
+      prevProps.firstName === this.props.firstName &&
+      prevProps.lastName === this.props.lastName &&
+      prevProps.cardNunmber === this.props.cardNunmber
     ) {
       return;
     }
@@ -57,13 +59,13 @@ class DisplayCardInfo extends React.Component {
           <div>
             {" "}
             <h2> Result </h2> <div className="panel panel-default"> </div>{" "}
-            <p> First Name: {this.props.FirstName} </p>{" "}
-            <p> Last Name: {this.props.LastName} </p>{" "}
+            <p> First Name: {this.props.firstName} </p>{" "}
+            <p> Last Name: {this.props.lastName} </p>{" "}
             <p>
               {" "}
               Card Nunmber: **** **** ****{" "}
-              {this.props.CardNunmber.substr(
-                this.props.CardNunmber.length - 4
+              {this.props.cardNunmber.substr(
+                this.props.cardNunmber.length - 4
               )}{" "}
             </p>{" "}
             <p> Pay System: {this.props.paySystem} </p>{" "}
@@ -78,6 +80,15 @@ class DisplayCardInfo extends React.Component {
       </div>
     );
   }
+}
+
+
+DisplayCardInfo.propTypes = {
+  visible: PropTypes.bool
+}
+
+DisplayCardInfo.defaultProps = {
+  isFormInfoVisibile: false
 }
 
 export default DisplayCardInfo;

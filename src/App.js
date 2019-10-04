@@ -1,30 +1,27 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
-import CardForm from './components/CardForm';
-import DisplayCardInfo from './components/DisplayCardInfo';
-
-
-
+import CardForm from "./components/CardForm";
+import DisplayCardInfo from "./components/DisplayCardInfo";
 
 class CardApp extends React.Component {
   state = {};
-  updateData = (FirstName, LastName, CardNunmber, formValid, paySystem) => {
+  updateData = (firstName, lastName, cardNunmber, formValid, paySystem) => {
     this.setState({
-      FirstName: FirstName,
-      LastName: LastName,
-      CardNunmber: CardNunmber,
+      firstName: firstName,
+      lastName: lastName,
+      cardNunmber: cardNunmber,
       formValid: formValid,
-      paySystem: paySystem
+      paySystem: paySystem,
     });
   };
 
-  componentDidUpdate() {
-    console.log(this.state);
-  }
+  // componentDidUpdate() {
+  //   console.log(this.state);
+  // }
 
   render() {
-    console.log('(render) CardApp')
+    console.log("(render) CardApp");
     return (
       <div className="App container">
         {" "}
@@ -37,9 +34,9 @@ class CardApp extends React.Component {
           <div className="col-md-4">
             {" "}
             <DisplayCardInfo
-              FirstName={this.state.FirstName}
-              LastName={this.state.LastName}
-              CardNunmber={this.state.CardNunmber}
+              firstName={this.state.firstName}
+              lastName={this.state.lastName}
+              cardNunmber={this.state.cardNunmber}
               formValid={this.state.formValid}
               paySystem={this.state.paySystem}
             />{" "}
@@ -49,6 +46,5 @@ class CardApp extends React.Component {
     );
   }
 }
-
 
 export default CardApp;

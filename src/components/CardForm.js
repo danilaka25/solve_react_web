@@ -1,34 +1,33 @@
 import React from "react";
 import CheckCard from "./CheckCard";
-
 import PropTypes from "prop-types";
 
 class CardForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      CardNunmber: "",
-      CardNunmberValid: false,
-      CardExpirationDate: "",
-      CardExpirationDateValid: false,
+      cardNunmber: "",
+      cardNunmberValid: false,
+      cardExpirationDate: "",
+      cardExpirationDateValid: false,
       cvv: "",
       cvvValid: false,
-      FirstName: "",
-      FirstNameValid: false,
-      LastName: "",
-      LastNameValid: false,
-      SecretQuestion: "",
-      SecretQuestionValid: false,
-      SecretAnswer: "",
-      SecretAnswerValid: false,
+      firstName: "",
+      firstNameValid: false,
+      lastName: "",
+      lastNameValid: false,
+      secretQuestion: "",
+      secretQuestionValid: false,
+      secretAnswer: "",
+      secretAnswerValid: false,
       formErrors: {
-        CardNunmber: "",
-        CardExpirationDate: "",
+        cardNunmber: "",
+        cardExpirationDate: "",
         cvv: "",
-        FirstName: "",
-        LastName: "",
-        SecretQuestion: "",
-        SecretAnswer: "",
+        firstName: "",
+        lastName: "",
+        secretQuestion: "",
+        secretAnswer: "",
       },
       formValid: false,
       paySystem: "--",
@@ -50,34 +49,34 @@ class CardForm extends React.Component {
 
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
-    let CardNunmberValid = this.state.CardNunmberValid;
-    let CardExpirationDateValid = this.state.CardExpirationDateValid;
+    let cardNunmberValid = this.state.cardNunmberValid;
+    let cardExpirationDateValid = this.state.cardExpirationDateValid;
     let cvvValid = this.state.cvvValid;
-    let FirstNameValid = this.state.FirstNameValid;
-    let LastNameValid = this.state.LastNameValid;
-    let SecretQuestionValid = this.state.SecretQuestionValid;
-    let SecretAnswerValid = this.state.SecretAnswerValid;
+    let firstNameValid = this.state.firstNameValid;
+    let lastNameValid = this.state.lastNameValid;
+    let secretQuestionValid = this.state.secretQuestionValid;
+    let secretAnswerValid = this.state.secretAnswerValid;
     switch (fieldName) {
-      case "CardNunmber":
+      case "cardNunmber":
         fieldName = value.match(/^[0-9]{16}$/);
         if (fieldName) {
-          CardNunmberValid = true;
-          fieldValidationErrors.CardNunmber = "";
+          cardNunmberValid = true;
+          fieldValidationErrors.cardNunmber = "";
         } else {
-          CardNunmberValid = false;
-          fieldValidationErrors.CardNunmber = " is invalid";
+          cardNunmberValid = false;
+          fieldValidationErrors.cardNunmber = " is invalid";
         }
         break;
-      case "CardExpirationDate":
+      case "cardExpirationDate":
         fieldName = value.match(
           /((0[1-9])|(1[0-2]))\/[2-9](([1-9]\d\d)|(01[0-9])|(0[2-9]\d))/
         );
         if (fieldName) {
-          CardExpirationDateValid = true;
-          fieldValidationErrors.CardExpirationDate = "";
+          cardExpirationDateValid = true;
+          fieldValidationErrors.cardExpirationDate = "";
         } else {
-          CardExpirationDateValid = false;
-          fieldValidationErrors.CardExpirationDate = " is invalid";
+          cardExpirationDateValid = false;
+          fieldValidationErrors.cardExpirationDate = " is invalid";
         }
         break;
       case "cvv":
@@ -90,44 +89,44 @@ class CardForm extends React.Component {
           fieldValidationErrors.cvv = " is invalid";
         }
         break;
-      case "FirstName":
+      case "firstName":
         fieldName = value.match(/([a-zA-Z]{3,30}\s*)+/);
         if (fieldName) {
-          FirstNameValid = true;
-          fieldValidationErrors.FirstName = "";
+          firstNameValid = true;
+          fieldValidationErrors.firstName = "";
         } else {
-          FirstNameValid = false;
-          fieldValidationErrors.FirstName = " is invalid";
+          firstNameValid = false;
+          fieldValidationErrors.firstName = " is invalid";
         }
         break;
-      case "LastName":
+      case "lastName":
         fieldName = value.match(/([a-zA-Z]{3,30}\s*)+/);
         if (fieldName) {
-          LastNameValid = true;
-          fieldValidationErrors.LastName = "";
+          lastNameValid = true;
+          fieldValidationErrors.lastName = "";
         } else {
-          LastNameValid = false;
-          fieldValidationErrors.LastName = " is invalid";
+          lastNameValid = false;
+          fieldValidationErrors.lastName = " is invalid";
         }
         break;
-      case "SecretQuestion":
+      case "secretQuestion":
         fieldName = value.match(/([a-zA-Z]{3,30}\s*)+/);
         if (fieldName) {
-          SecretQuestionValid = true;
-          fieldValidationErrors.SecretQuestion = "";
+          secretQuestionValid = true;
+          fieldValidationErrors.secretQuestion = "";
         } else {
-          SecretQuestionValid = false;
-          fieldValidationErrors.SecretQuestion = " is invalid";
+          secretQuestionValid = false;
+          fieldValidationErrors.secretQuestion = " is invalid";
         }
         break;
-      case "SecretAnswer":
+      case "secretAnswer":
         fieldName = value.match(/([a-zA-Z]{3,30}\s*)+/);
         if (fieldName) {
-          SecretAnswerValid = true;
-          fieldValidationErrors.SecretAnswer = "";
+          secretAnswerValid = true;
+          fieldValidationErrors.secretAnswer = "";
         } else {
-          SecretAnswerValid = false;
-          fieldValidationErrors.SecretAnswer = " is invalid";
+          secretAnswerValid = false;
+          fieldValidationErrors.secretAnswer = " is invalid";
         }
         break;
       default:
@@ -135,13 +134,13 @@ class CardForm extends React.Component {
     }
     this.setState({
       formErrors: fieldValidationErrors,
-      CardNunmberValid: CardNunmberValid,
-      CardExpirationDateValid: CardExpirationDateValid,
+      cardNunmberValid: cardNunmberValid,
+      cardExpirationDateValid: cardExpirationDateValid,
       cvvValid: cvvValid,
-      FirstNameValid: FirstNameValid,
-      LastNameValid: LastNameValid,
-      SecretQuestionValid: SecretQuestionValid,
-      SecretAnswerValid: SecretAnswerValid,
+      firstNameValid: firstNameValid,
+      lastNameValid: lastNameValid,
+      secretQuestionValid: secretQuestionValid,
+      secretAnswerValid: secretAnswerValid,
     });
   }
 
@@ -158,13 +157,13 @@ class CardForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     if (
-      // this.state.CardNunmberValid &&
-      // this.state.CardExpirationDateValid &&
+      // this.state.cardNunmberValid &&
+      // this.state.cardExpirationDateValid &&
       // this.state.cvvValid &&
-      this.state.FirstNameValid &&
-      this.state.LastNameValid
-      // this.state.SecretQuestionValid &&
-      // this.state.SecretAnswerValid
+      this.state.firstNameValid &&
+      this.state.lastNameValid
+      // this.state.secretQuestionValid &&
+      // this.state.secretAnswerValid
 
       // zzz  6) Думаю эта функция работает, но выглядит неправильно с точки зрения чистого кода
     ) {
@@ -184,9 +183,9 @@ class CardForm extends React.Component {
     }
 
     this.props.updateData(
-      this.state.FirstName,
-      this.state.LastName,
-      this.state.CardNunmber,
+      this.state.firstName,
+      this.state.lastName,
+      this.state.cardNunmber,
       this.state.formValid,
       this.state.paySystem // post
     );
@@ -212,31 +211,31 @@ class CardForm extends React.Component {
             {" "}
             <div
               className={`form-group ${this.errorClass(
-                this.state.formErrors.CardNunmber
+                this.state.formErrors.cardNunmber
               )}`}
             >
               {" "}
               <input
                 type="text"
                 className="form-control"
-                name="CardNunmber"
+                name="cardNunmber"
                 placeholder="Card Nunmber"
-                value={this.state.CardNunmber}
+                value={this.state.cardNunmber}
                 onChange={this.handleUserInput}
               />{" "}
             </div>{" "}
             <div
               className={`form-group ${this.errorClass(
-                this.state.formErrors.CardExpirationDate
+                this.state.formErrors.cardExpirationDate
               )}`}
             >
               {" "}
               <input
                 type="text"
                 className="form-control"
-                name="CardExpirationDate"
+                name="cardExpirationDate"
                 placeholder="mm/yyyy"
-                value={this.state.CardExpirationDate}
+                value={this.state.cardExpirationDate}
                 onChange={this.handleUserInput}
               />{" "}
             </div>{" "}
@@ -260,31 +259,31 @@ class CardForm extends React.Component {
             {" "}
             <div
               className={`col-md-6 form-group ${this.errorClass(
-                this.state.formErrors.FirstName
+                this.state.formErrors.firstName
               )}`}
             >
               {" "}
               <input
                 type="text"
                 className="form-control"
-                name="FirstName"
+                name="firstName"
                 placeholder="First Name"
-                value={this.state.FirstName}
+                value={this.state.firstName}
                 onChange={this.handleUserInput}
               />{" "}
             </div>{" "}
             <div
               className={`col-md-6 form-group ${this.errorClass(
-                this.state.formErrors.LastName
+                this.state.formErrors.lastName
               )}`}
             >
               {" "}
               <input
                 type="text"
                 className="form-control"
-                name="LastName"
+                name="lastName"
                 placeholder="Last Name"
-                value={this.state.LastName}
+                value={this.state.lastName}
                 onChange={this.handleUserInput}
               />{" "}
             </div>{" "}
@@ -293,31 +292,31 @@ class CardForm extends React.Component {
             {" "}
             <div
               className={`col-md-6 form-group ${this.errorClass(
-                this.state.formErrors.SecretQuestion
+                this.state.formErrors.secretQuestion
               )}`}
             >
               {" "}
               <input
                 type="text"
                 className="form-control"
-                name="SecretQuestion"
+                name="secretQuestion"
                 placeholder="Secret Question"
-                value={this.state.SecretQuestion}
+                value={this.state.secretQuestion}
                 onChange={this.handleUserInput}
               />{" "}
             </div>{" "}
             <div
               className={`col-md-6 form-group ${this.errorClass(
-                this.state.formErrors.SecretAnswer
+                this.state.formErrors.secretAnswer
               )}`}
             >
               {" "}
               <input
                 type="text"
                 className="form-control"
-                name="SecretAnswer"
+                name="secretAnswer"
                 placeholder="Secret Answer"
-                value={this.state.SecretAnswer}
+                value={this.state.secretAnswer}
                 onChange={this.handleUserInput}
               />{" "}
             </div>{" "}
@@ -329,7 +328,7 @@ class CardForm extends React.Component {
         </form>{" "}
         {/* zzz  5) Пропсы с маленькой буквы как и переменные */}
         <CheckCard
-          CardNunmber={this.state.CardNunmber}
+          cardNunmber={this.state.cardNunmber}
           updateData={this.updateData}
         />{" "}
       </div>
@@ -341,23 +340,23 @@ class CardForm extends React.Component {
 // пропсы с маленькой буквы
 
 CardForm.propTypes = {
-  CardNunmber: PropTypes.string,
-  CardExpirationDate: PropTypes.string,
+  cardNunmber: PropTypes.string,
+  cardExpirationDate: PropTypes.string,
   cvv: PropTypes.string,
-  FirstName: PropTypes.string,
-  LastName: PropTypes.string,
-  SecretQuestion: PropTypes.string,
-  SecretAnswer: PropTypes.string,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  secretQuestion: PropTypes.string,
+  secretAnswer: PropTypes.string,
 };
 
 CardForm.defaultProps = {
-  CardNunmber: "0000 0000 0000 0000",
-  CardExpirationDate: "MM/YYYY",
+  cardNunmber: "0000 0000 0000 0000",
+  cardExpirationDate: "MM/YYYY",
   cvv: "CVV",
-  FirstName: "First Name",
-  LastName: "Last Name",
-  SecretQuestion: "Secret Question",
-  SecretAnswer: "Secret Answer",
+  firstName: "First Name",
+  lastName: "Last Name",
+  secretQuestion: "Secret Question",
+  secretAnswer: "Secret Answer",
 };
 
 export default CardForm;
