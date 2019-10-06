@@ -16,12 +16,12 @@ class CardApp extends React.Component {
     });
   };
 
-  // componentDidUpdate() {
-  //   console.log(this.state);
-  // }
+  componentDidUpdate() {
+    console.log(this.state);
+  }
 
   render() {
-    console.log("(render) CardApp");
+    // console.log("(render) CardApp");
     return (
       <div className="App container">
         {" "}

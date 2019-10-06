@@ -196,7 +196,7 @@ class CardForm extends React.Component {
   }
 
   render() {
-    console.log("(render) CardForm");
+    // console.log("(render) CardForm");
     return (
       <div>
         {" "}

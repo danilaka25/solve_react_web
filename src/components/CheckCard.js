@@ -6,7 +6,7 @@ class CheckCard extends React.Component {
     paySystem: "",
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (this.props.cardNunmber.length === "16") {
       let count = this.props.cardNunmber.substring(0, 4);
       if (this.props.cardNunmber !== prevProps.cardNunmber) {
@@ -24,7 +24,7 @@ class CheckCard extends React.Component {
     }
   }
   render() {
-    console.log("(render) CheckCard");
+    // console.log("(render) CheckCard");
     return <div> </div>;
   }
 }

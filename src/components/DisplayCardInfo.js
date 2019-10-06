@@ -44,7 +44,7 @@ class DisplayCardInfo extends React.Component {
   };
 
   render() {
-    console.log("(render) DisplayCardInfo");
+    // console.log("(render) DisplayCardInfo");
 
     if (!this.state.visible) {
       return null;
