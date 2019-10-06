@@ -1,13 +1,29 @@
-import React from "react";
-import PropTypes from "prop-types";
+/* eslint-disable */
+// @flow 
 
+import React from 'react';
 
-class DisplayCardInfo extends React.Component {
-  state = {
-    visible: false,
-    timerId: undefined,
-    startAt: undefined
-  };
+type Props = {
+  firstName: string,
+  lastName: string,
+  cardNunmber: string,
+  paySystem: string,
+  formValid: boolean,
+};
+
+type State = {
+  visible: boolean,
+  timerId: string,
+};
+
+class DisplayCardInfo extends React.Component<Props, State> {
+
+    state = {
+      visible: false,
+      timerId: undefined,
+      startAt: undefined,
+    
+  }
 
   startTimer = () => {
     const timerId = setTimeout(() => {
@@ -15,17 +31,17 @@ class DisplayCardInfo extends React.Component {
       this.setState({
         visible: false,
         timerId: false,
-        startAt: undefined
+        startAt: undefined,
       });
     }, 5000);
     this.setState({
       visible: true,
       timerId,
-      startAt: Date.now()
+      startAt: Date.now(),
     });
   };
 
-  componentDidUpdate = prevProps => {
+  componentDidUpdate = (prevProps) => {
     if (
       prevProps.firstName === this.props.firstName &&
       prevProps.lastName === this.props.lastName &&
@@ -50,45 +66,42 @@ class DisplayCardInfo extends React.Component {
       return null;
     }
 
-    let toShow = this.props.formValid === "true" ? true : false;
+    let toShow = this.props.formValid === 'true' ? true : false;
 
     return (
       <div>
-        {" "}
         {toShow ? (
           <div>
-            {" "}
-            <h2> Result </h2> <div className="panel panel-default"> </div>{" "}
-            <p> First Name: {this.props.firstName} </p>{" "}
-            <p> Last Name: {this.props.lastName} </p>{" "}
+            <h2> Result </h2> <div className="panel panel-default"> </div>{' '}
+            <p> First Name: {this.props.firstName} </p>{' '}
+            <p> Last Name: {this.props.lastName} </p>{' '}
             <p>
-              {" "}
-              Card Nunmber: **** **** ****{" "}
+              {' '}
+              Card Nunmber: **** **** ****{' '}
               {this.props.cardNunmber.substr(
                 this.props.cardNunmber.length - 4
-              )}{" "}
-            </p>{" "}
-            <p> Pay System: {this.props.paySystem} </p>{" "}
+              )}{' '}
+            </p>{' '}
+            <p> Pay System: {this.props.paySystem} </p>{' '}
           </div>
         ) : (
           <div>
-            {" "}
-            <h2> Result </h2> <div className="panel panel-default"> </div>{" "}
-            <h3> Error </h3>{" "}
+            {' '}
+            <h2> Result </h2> <div className="panel panel-default"> </div>{' '}
+            <h3> Error </h3>{' '}
           </div>
-        )}{" "}
+        )}{' '}
       </div>
     );
   }
 }
 
+// DisplayCardInfo.propTypes = {
+//   visible: PropTypes.bool,
+// };
 
-DisplayCardInfo.propTypes = {
-  visible: PropTypes.bool
-}
-
-DisplayCardInfo.defaultProps = {
-  isFormInfoVisibile: false
-}
+// DisplayCardInfo.defaultProps = {
+//   isFormInfoVisibile: false,
+// };
 
 export default DisplayCardInfo;
