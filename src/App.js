@@ -15,9 +15,6 @@ type Props = {
     formValid: string,
     paySystem: string,
   ) => void,
-
-   
-   
 };
 
 type State = {
@@ -26,13 +23,19 @@ type State = {
   cardNunmber: string,
   paySystem: string,
   formValid: boolean,
- 
 };
 
 class CardApp extends React.Component<Props, State> {
   state = {};
 
-  updateData = (firstName: string, lastName: string, cardNunmber: string, formValid: boolean, paySystem: string) => { //get
+  updateData = (
+    firstName: string,
+    lastName: string,
+    cardNunmber: string,
+    formValid: boolean,
+    paySystem: string,
+  ) => {
+    //get
     this.setState({
       firstName: firstName,
       lastName: lastName,
@@ -48,7 +51,7 @@ class CardApp extends React.Component<Props, State> {
 
   render() {
     // console.log("(render) CardApp");
-     console.log(this.state);
+    console.log(this.state);
     return (
       <div className="App container">
         {' '}
