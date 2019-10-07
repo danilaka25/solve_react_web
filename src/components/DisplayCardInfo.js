@@ -24,13 +24,6 @@ class DisplayCardInfo extends React.Component<Props, State> {
     startAt: undefined,
   };
 
-
-
-
-
-
-
-
   startTimer = () => {
     const timerId = setTimeout(() => {
       // console.log('clear')
@@ -46,12 +39,6 @@ class DisplayCardInfo extends React.Component<Props, State> {
       startAt: Date.now(),
     });
   };
-
-
-
-
-
-
 
   componentDidUpdate = (prevProps: Props) => {
     if (
@@ -70,12 +57,6 @@ class DisplayCardInfo extends React.Component<Props, State> {
     clearTimeout(timerId);
     this.startTimer();
   };
-
-
-
-
-
-
 
   render() {
     // console.log("(render) DisplayCardInfo");
@@ -97,7 +78,7 @@ class DisplayCardInfo extends React.Component<Props, State> {
               {' '}
               Card Nunmber: **** **** ****{' '}
               {this.props.cardNunmber.substr(
-                this.props.cardNunmber.length - 4
+                this.props.cardNunmber.length - 4,
               )}{' '}
             </p>{' '}
             <p> Pay System: {this.props.paySystem} </p>{' '}
@@ -113,8 +94,6 @@ class DisplayCardInfo extends React.Component<Props, State> {
     );
   }
 }
-
-
 
 // DisplayCardInfo.defaultProps = {
 //   isFormInfoVisibile: false,
