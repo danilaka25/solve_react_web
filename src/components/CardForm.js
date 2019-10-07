@@ -10,12 +10,11 @@ type Props = {
     firstName: string,
     lastName: string,
     cardNunmber: string,
-    paySystem: string
+    paySystem: string,
   ) => void,
 
-  fieldName: string, 
+  fieldName: string,
   value: string,
-   
 };
 
 type State = {
@@ -47,7 +46,6 @@ type State = {
 };
 
 class CardForm extends React.Component<Props, State> {
-  
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -74,7 +72,7 @@ class CardForm extends React.Component<Props, State> {
         secretQuestion: '',
         secretAnswer: '',
       },
-      formValid: "false",
+      formValid: 'false',
       paySystem: '--',
     };
   }
@@ -88,7 +86,7 @@ class CardForm extends React.Component<Props, State> {
       },
       () => {
         this.validateField(name, value);
-      }
+      },
     );
   };
 
@@ -114,7 +112,7 @@ class CardForm extends React.Component<Props, State> {
         break;
       case 'cardExpirationDate':
         fieldName = value.match(
-          /((0[1-9])|(1[0-2]))\/[2-9](([1-9]\d\d)|(01[0-9])|(0[2-9]\d))/
+          /((0[1-9])|(1[0-2]))\/[2-9](([1-9]\d\d)|(01[0-9])|(0[2-9]\d))/,
         );
         if (fieldName) {
           cardExpirationDateValid = true;
@@ -192,9 +190,8 @@ class CardForm extends React.Component<Props, State> {
 
   // zzz Не понял что тут происходит. Перегруженная конструкция, я бы подумал над упрощением
 
-
   componentDidUpdate() {
-    this.updateData = (paySystem) => {
+    this.updateData = paySystem => {
       if (this.state.paySystem !== paySystem) {
         this.setState({
           paySystem: paySystem,
@@ -204,7 +201,6 @@ class CardForm extends React.Component<Props, State> {
       console.log(this.paySystem);
     };
   }
-
 
   // updateData = (paySystem: string) => {
   //     if (this.state.paySystem !== paySystem) {
@@ -239,9 +235,9 @@ class CardForm extends React.Component<Props, State> {
             this.state.lastName,
             this.state.cardNunmber,
             this.state.formValid,
-            this.state.paySystem // post
+            this.state.paySystem, // post
           );
-        }
+        },
       );
     } else {
       this.setState({
@@ -285,7 +281,7 @@ class CardForm extends React.Component<Props, State> {
             {' '}
             <div
               className={`form-group ${this.errorClass(
-                this.state.formErrors.cardNunmber
+                this.state.formErrors.cardNunmber,
               )}`}
             >
               {' '}
@@ -300,7 +296,7 @@ class CardForm extends React.Component<Props, State> {
             </div>{' '}
             <div
               className={`form-group ${this.errorClass(
-                this.state.formErrors.cardExpirationDate
+                this.state.formErrors.cardExpirationDate,
               )}`}
             >
               {' '}
@@ -315,7 +311,7 @@ class CardForm extends React.Component<Props, State> {
             </div>{' '}
             <div
               className={`form-group ${this.errorClass(
-                this.state.formErrors.cvv
+                this.state.formErrors.cvv,
               )}`}
             >
               {' '}
@@ -333,7 +329,7 @@ class CardForm extends React.Component<Props, State> {
             {' '}
             <div
               className={`col-md-6 form-group ${this.errorClass(
-                this.state.formErrors.firstName
+                this.state.formErrors.firstName,
               )}`}
             >
               {' '}
@@ -348,7 +344,7 @@ class CardForm extends React.Component<Props, State> {
             </div>{' '}
             <div
               className={`col-md-6 form-group ${this.errorClass(
-                this.state.formErrors.lastName
+                this.state.formErrors.lastName,
               )}`}
             >
               {' '}
@@ -366,7 +362,7 @@ class CardForm extends React.Component<Props, State> {
             {' '}
             <div
               className={`col-md-6 form-group ${this.errorClass(
-                this.state.formErrors.secretQuestion
+                this.state.formErrors.secretQuestion,
               )}`}
             >
               {' '}
@@ -381,7 +377,7 @@ class CardForm extends React.Component<Props, State> {
             </div>{' '}
             <div
               className={`col-md-6 form-group ${this.errorClass(
-                this.state.formErrors.secretAnswer
+                this.state.formErrors.secretAnswer,
               )}`}
             >
               {' '}
