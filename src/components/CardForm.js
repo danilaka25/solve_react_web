@@ -46,6 +46,16 @@ type State = {
 class CardForm extends React.Component<Props, State> {
   static whyDidYouRender = true;
 
+  static defaultProps = {
+    cardNunmber: '0000 0000 0000 0000',
+    cardExpirationDate: 'MM/YYYY',
+    cvv: 'CVV',
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    secretQuestion: 'Secret Question',
+    secretAnswer: 'Secret Answer',
+  };
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -374,18 +384,5 @@ class CardForm extends React.Component<Props, State> {
     );
   }
 }
-
-//  zzz 3) defaultProps желательно писать поменьше
-// пропсы с маленькой буквы
-
-// CardForm.defaultProps = {
-//   cardNunmber: '0000 0000 0000 0000',
-//   cardExpirationDate: 'MM/YYYY',
-//   cvv: 'CVV',
-//   firstName: 'First Name',
-//   lastName: 'Last Name',
-//   secretQuestion: 'Secret Question',
-//   secretAnswer: 'Secret Answer',
-// };
 
 export default CardForm;

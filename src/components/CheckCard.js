@@ -14,6 +14,10 @@ type State = {
 class CheckCard extends React.Component<Props, State> {
   static whyDidYouRender = true;
 
+  static defaultProps = {
+    cardNunmber: '0000 0000 0000 0000',
+  };
+
   state = {
     paySystem: '',
   };

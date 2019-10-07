@@ -20,6 +20,11 @@ type State = {
 
 class DisplayCardInfo extends React.Component<Props, State> {
   static whyDidYouRender = true;
+  static defaultProps = {
+    cardNunmber: '0000 0000 0000 0000',
+    firstName: 'First Name',
+    lastName: 'Last Name',
+  };
 
   state = {
     visible: false,

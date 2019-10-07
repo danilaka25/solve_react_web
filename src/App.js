@@ -33,6 +33,13 @@ type State = {
 class CardApp extends React.Component<Props, State> {
   static whyDidYouRender = true;
 
+  //  zzz 3) defaultProps желательно писать поменьше, пропсы с маленькой буквы
+  static defaultProps = {
+    cardNunmber: '0000 0000 0000 0000',
+    firstName: 'First Name',
+    lastName: 'Last Name',
+  };
+
   state = {};
 
   updateData = (
