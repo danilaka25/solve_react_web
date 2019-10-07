@@ -2,13 +2,14 @@
 // @flow
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 type Props = {
   firstName: string,
   lastName: string,
   cardNunmber: string,
   paySystem: string,
-  formValid: boolean,
+  formValid: string,
 };
 
 type State = {
@@ -18,6 +19,8 @@ type State = {
 };
 
 class DisplayCardInfo extends React.Component<Props, State> {
+  static whyDidYouRender = true;
+
   state = {
     visible: false,
     timerId: undefined,
@@ -59,7 +62,7 @@ class DisplayCardInfo extends React.Component<Props, State> {
   };
 
   render() {
-    // console.log("(render) DisplayCardInfo");
+    console.log('(render) DisplayCardInfo');
 
     if (!this.state.visible) {
       return null;
@@ -95,8 +98,6 @@ class DisplayCardInfo extends React.Component<Props, State> {
   }
 }
 
-// DisplayCardInfo.defaultProps = {
-//   isFormInfoVisibile: false,
-// }; пишем полюбому даже с flow
+//defaultProps пишем полюбому даже с flow
 
 export default DisplayCardInfo;

@@ -10,11 +10,9 @@ type Props = {
     firstName: string,
     lastName: string,
     cardNunmber: string,
+    formValid: string,
     paySystem: string,
   ) => void,
-
-  fieldName: string,
-  value: string,
 };
 
 type State = {
@@ -46,6 +44,8 @@ type State = {
 };
 
 class CardForm extends React.Component<Props, State> {
+  static whyDidYouRender = true;
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -190,42 +190,27 @@ class CardForm extends React.Component<Props, State> {
 
   // zzz Не понял что тут происходит. Перегруженная конструкция, я бы подумал над упрощением
 
-  componentDidUpdate() {
-    this.updateData = paySystem => {
-      if (this.state.paySystem !== paySystem) {
-        this.setState({
-          paySystem: paySystem,
-        });
-      }
-
-      console.log(this.paySystem);
-    };
-  }
-
-  // updateData = (paySystem: string) => {
-  //     if (this.state.paySystem !== paySystem) {
-  //       this.setState({
-  //         paySystem: paySystem,
-  //       });
-  //     }
-
-  //     console.log(this.paySystem);
-  //   };
+  updateData = (paySystem: string) => {
+    if (this.state.paySystem !== paySystem) {
+      this.setState({
+        paySystem: paySystem,
+      });
+    }
+  };
 
   handleSubmit = (event: any) => {
     event.preventDefault();
     if (
-      // this.state.cardNunmberValid &&
+      this.state.cardNunmberValid &&
       // this.state.cardExpirationDateValid &&
       // this.state.cvvValid &&
       this.state.firstNameValid &&
       this.state.lastNameValid
       // this.state.secretQuestionValid &&
       // this.state.secretAnswerValid
-
-      // zzz  6) Думаю эта функция работает, но выглядит неправильно с точки зрения чистого кода
     ) {
       this.setState(
+        // zzz  6) Думаю эта функция работает, но выглядит неправильно с точки зрения чистого кода
         {
           formValid: 'true',
         },
@@ -235,7 +220,7 @@ class CardForm extends React.Component<Props, State> {
             this.state.lastName,
             this.state.cardNunmber,
             this.state.formValid,
-            this.state.paySystem, // post
+            this.state.paySystem,
           );
         },
       );
@@ -244,29 +229,14 @@ class CardForm extends React.Component<Props, State> {
         formValid: 'false',
       });
     }
-    console.log(this.state.formValid);
   };
-
-  componentDidMount(prevState: Object) {
-    if (prevState === this.state) {
-      return;
-    }
-
-    // this.props.updateData(
-    //   this.state.firstName,
-    //   this.state.lastName,
-    //   this.state.cardNunmber,
-    //   this.state.formValid,
-    //   this.state.paySystem // post
-    // );
-  }
 
   errorClass(error: Object) {
     return error.length === 0 ? '' : 'has-error';
   }
 
   render() {
-    // console.log("(render) CardForm");
+    //  console.log("(render) CardForm");
     return (
       <div>
         {' '}
@@ -396,7 +366,6 @@ class CardForm extends React.Component<Props, State> {
             Sign up{' '}
           </button>{' '}
         </form>{' '}
-        {/* zzz  5) Пропсы с маленькой буквы как и переменные */}
         <CheckCard
           cardNunmber={this.state.cardNunmber}
           updateData={this.updateData}
@@ -408,16 +377,6 @@ class CardForm extends React.Component<Props, State> {
 
 //  zzz 3) defaultProps желательно писать поменьше
 // пропсы с маленькой буквы
-
-// CardForm.propTypes = {
-//   cardNunmber: PropTypes.string,
-//   cardExpirationDate: PropTypes.string,
-//   cvv: PropTypes.string,
-//   firstName: PropTypes.string,
-//   lastName: PropTypes.string,
-//   secretQuestion: PropTypes.string,
-//   secretAnswer: PropTypes.string,
-// };
 
 // CardForm.defaultProps = {
 //   cardNunmber: '0000 0000 0000 0000',

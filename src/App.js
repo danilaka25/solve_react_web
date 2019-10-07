@@ -2,10 +2,15 @@
 // @flow
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import CardForm from './components/CardForm';
 import DisplayCardInfo from './components/DisplayCardInfo';
+if (process.env.NODE_ENV !== 'production') {
+  const whyDidYouRender = require('@welldone-software/why-did-you-render/dist/no-classes-transpile/umd/whyDidYouRender.min.js');
+  whyDidYouRender(React);
+}
 
 type Props = {
   updateData: (
@@ -22,17 +27,19 @@ type State = {
   lastName: string,
   cardNunmber: string,
   paySystem: string,
-  formValid: boolean,
+  formValid: string,
 };
 
 class CardApp extends React.Component<Props, State> {
+  static whyDidYouRender = true;
+
   state = {};
 
   updateData = (
     firstName: string,
     lastName: string,
     cardNunmber: string,
-    formValid: boolean,
+    formValid: string,
     paySystem: string,
   ) => {
     //get
@@ -45,12 +52,8 @@ class CardApp extends React.Component<Props, State> {
     });
   };
 
-  // componentDidMount() {
-  //   console.log(this.state);
-  // }
-
   render() {
-    // console.log("(render) CardApp");
+    // console.log('(render) CardApp');
     console.log(this.state);
     return (
       <div className="App container">
