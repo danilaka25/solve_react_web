@@ -5,7 +5,7 @@ import React from 'react';
 
 type Props = {
   cardNunmber: string,
-  // onCardChange: (v1: string) => void,
+  updateData: (v1: string) => void,
 };
 
 type State = {
@@ -18,9 +18,9 @@ class CheckCard extends React.Component<Props, State> {
       paySystem: '',
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     if (this.props.cardNunmber.length === '16') {
-      const count = this.props.cardNunmber.substring(0, 4);
+      let  count: number = +this.props.cardNunmber.substring(0, 4);
       if (this.props.cardNunmber !== prevProps.cardNunmber) {
         if (count < 2000) {
           this.setState({

@@ -12,6 +12,10 @@ type Props = {
     cardNunmber: string,
     paySystem: string
   ) => void,
+
+  fieldName: string, 
+  value: string,
+   
 };
 
 type State = {
@@ -30,20 +34,21 @@ type State = {
   secretAnswer: string,
   secretAnswerValid: boolean,
   formErrors: {
-    a: string,
-    b: string,
-    c: string,
-    d: string,
-    e: string,
-    f: string,
-    g: string,
+    cardNunmber: string,
+    cardExpirationDate: string,
+    cvv: string,
+    firstName: string,
+    lastName: string,
+    secretQuestion: string,
+    secretAnswer: string,
   },
-  formValid: boolean,
+  formValid: string,
   paySystem: string,
 };
 
 class CardForm extends React.Component<Props, State> {
-  constructor(props) {
+  
+  constructor(props: Props) {
     super(props);
     this.state = {
       cardNunmber: '',
@@ -69,12 +74,12 @@ class CardForm extends React.Component<Props, State> {
         secretQuestion: '',
         secretAnswer: '',
       },
-      formValid: false,
+      formValid: "false",
       paySystem: '--',
     };
   }
 
-  handleUserInput = e => {
+  handleUserInput = (e: any) => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState(
@@ -87,7 +92,7 @@ class CardForm extends React.Component<Props, State> {
     );
   };
 
-  validateField(fieldName, value) {
+  validateField(fieldName: any, value: string) {
     let fieldValidationErrors = this.state.formErrors;
     let cardNunmberValid = this.state.cardNunmberValid;
     let cardExpirationDateValid = this.state.cardExpirationDateValid;
@@ -129,6 +134,7 @@ class CardForm extends React.Component<Props, State> {
           fieldValidationErrors.cvv = ' is invalid';
         }
         break;
+
       case 'firstName':
         fieldName = value.match(/([a-zA-Z]{3,30}\s*)+/);
         if (fieldName) {
@@ -186,15 +192,31 @@ class CardForm extends React.Component<Props, State> {
 
   // zzz Не понял что тут происходит. Перегруженная конструкция, я бы подумал над упрощением
 
-  updateData = paySystem => {
-    if (this.state.paySystem !== paySystem) {
-      this.setState({
-        paySystem: paySystem,
-      });
-    }
-  };
 
-  handleSubmit = event => {
+  componentDidUpdate() {
+    this.updateData = (paySystem) => {
+      if (this.state.paySystem !== paySystem) {
+        this.setState({
+          paySystem: paySystem,
+        });
+      }
+
+      console.log(this.paySystem);
+    };
+  }
+
+
+  // updateData = (paySystem: string) => {
+  //     if (this.state.paySystem !== paySystem) {
+  //       this.setState({
+  //         paySystem: paySystem,
+  //       });
+  //     }
+
+  //     console.log(this.paySystem);
+  //   };
+
+  handleSubmit = (event: any) => {
     event.preventDefault();
     if (
       // this.state.cardNunmberValid &&
@@ -207,32 +229,43 @@ class CardForm extends React.Component<Props, State> {
 
       // zzz  6) Думаю эта функция работает, но выглядит неправильно с точки зрения чистого кода
     ) {
-      this.setState({
-        formValid: 'true',
-      });
+      this.setState(
+        {
+          formValid: 'true',
+        },
+        function() {
+          this.props.updateData(
+            this.state.firstName,
+            this.state.lastName,
+            this.state.cardNunmber,
+            this.state.formValid,
+            this.state.paySystem // post
+          );
+        }
+      );
     } else {
       this.setState({
         formValid: 'false',
       });
     }
-     console.log(this.state.formValid);
+    console.log(this.state.formValid);
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidMount(prevState: Object) {
     if (prevState === this.state) {
       return;
     }
 
-    this.props.updateData(
-      this.state.firstName,
-      this.state.lastName,
-      this.state.cardNunmber,
-      this.state.formValid,
-      this.state.paySystem // post
-    );
+    // this.props.updateData(
+    //   this.state.firstName,
+    //   this.state.lastName,
+    //   this.state.cardNunmber,
+    //   this.state.formValid,
+    //   this.state.paySystem // post
+    // );
   }
 
-  errorClass(error) {
+  errorClass(error: Object) {
     return error.length === 0 ? '' : 'has-error';
   }
 

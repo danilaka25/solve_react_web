@@ -1,5 +1,5 @@
 /* eslint-disable */
-// @flow 
+// @flow
 
 import React from 'react';
 
@@ -13,24 +13,30 @@ type Props = {
 
 type State = {
   visible: boolean,
-  timerId: string,
+  timerId?: TimeoutID,
+  startAt?: number,
 };
 
 class DisplayCardInfo extends React.Component<Props, State> {
+  state = {
+    visible: false,
+    timerId: undefined,
+    startAt: undefined,
+  };
 
-    state = {
-      visible: false,
-      timerId: undefined,
-      startAt: undefined,
-    
-  }
+
+
+
+
+
+
 
   startTimer = () => {
     const timerId = setTimeout(() => {
-      //console.log('clear')
+      // console.log('clear')
       this.setState({
         visible: false,
-        timerId: false,
+        timerId: undefined,
         startAt: undefined,
       });
     }, 5000);
@@ -41,7 +47,13 @@ class DisplayCardInfo extends React.Component<Props, State> {
     });
   };
 
-  componentDidUpdate = (prevProps) => {
+
+
+
+
+
+
+  componentDidUpdate = (prevProps: Props) => {
     if (
       prevProps.firstName === this.props.firstName &&
       prevProps.lastName === this.props.lastName &&
@@ -53,11 +65,17 @@ class DisplayCardInfo extends React.Component<Props, State> {
       return this.startTimer();
     }
     // Timer is already rendered. Reset prev timer + start new timer for 5 sec
-    //console.log("update timer");
-    const timerId = this.state.timerId;
+    // console.log("update timer");
+    const { timerId } = this.state;
     clearTimeout(timerId);
     this.startTimer();
   };
+
+
+
+
+
+
 
   render() {
     // console.log("(render) DisplayCardInfo");
@@ -66,7 +84,7 @@ class DisplayCardInfo extends React.Component<Props, State> {
       return null;
     }
 
-    let toShow = this.props.formValid === 'true' ? true : false;
+    const toShow = this.props.formValid === 'true';
 
     return (
       <div>
@@ -96,12 +114,10 @@ class DisplayCardInfo extends React.Component<Props, State> {
   }
 }
 
-// DisplayCardInfo.propTypes = {
-//   visible: PropTypes.bool,
-// };
+
 
 // DisplayCardInfo.defaultProps = {
 //   isFormInfoVisibile: false,
-// };
+// }; пишем полюбому даже с flow
 
 export default DisplayCardInfo;
