@@ -12,7 +12,7 @@ type State = {
 };
 
 class CheckCard extends React.Component<Props, State> {
-  static whyDidYouRender = true;
+  //static whyDidYouRender = true;
 
   static defaultProps = {
     cardNunmber: '0000 0000 0000 0000',
@@ -42,7 +42,7 @@ class CheckCard extends React.Component<Props, State> {
   }
 
   render() {
-    console.log('(render) CheckCard');
+    //console.log('(render) CheckCard');
     return <div></div>;
   }
 }

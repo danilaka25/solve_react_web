@@ -39,12 +39,12 @@ type State = {
     secretQuestion: string,
     secretAnswer: string,
   },
-  formValid: string,
+  formValid: string, // c boolen не передается вверх по дереву
   paySystem: string,
 };
 
 class CardForm extends React.Component<Props, State> {
-  static whyDidYouRender = true;
+  //static whyDidYouRender = true;
 
   static defaultProps = {
     cardNunmber: '0000 0000 0000 0000',
@@ -87,7 +87,7 @@ class CardForm extends React.Component<Props, State> {
     };
   }
 
-  handleUserInput = (e: any) => {
+  handleUserInput = (e: Object) => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState(
@@ -100,7 +100,7 @@ class CardForm extends React.Component<Props, State> {
     );
   };
 
-  validateField(fieldName: any, value: string) {
+  validateField(fieldName: Function, value: string) {
     let fieldValidationErrors = this.state.formErrors;
     let cardNunmberValid = this.state.cardNunmberValid;
     let cardExpirationDateValid = this.state.cardExpirationDateValid;
@@ -208,7 +208,7 @@ class CardForm extends React.Component<Props, State> {
     }
   };
 
-  handleSubmit = (event: any) => {
+  handleSubmit = (event: Object) => {
     event.preventDefault();
     if (
       this.state.cardNunmberValid &&
@@ -235,9 +235,14 @@ class CardForm extends React.Component<Props, State> {
         },
       );
     } else {
-      this.setState({
-        formValid: 'false',
-      });
+      this.setState(
+        {
+          formValid: 'false',
+        },
+        function() {
+          this.props.updateData(this.state.formValid);
+        },
+      );
     }
   };
 

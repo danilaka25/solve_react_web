@@ -19,7 +19,7 @@ type State = {
 };
 
 class DisplayCardInfo extends React.Component<Props, State> {
-  static whyDidYouRender = true;
+  //static whyDidYouRender = true;
 
   static defaultProps = {
     cardNunmber: '0000 0000 0000 0000',
@@ -68,17 +68,17 @@ class DisplayCardInfo extends React.Component<Props, State> {
   };
 
   render() {
-    console.log('(render) DisplayCardInfo');
+    //console.log('(render) DisplayCardInfo');
 
     if (!this.state.visible) {
       return null;
     }
 
-    const toShow = this.props.formValid === 'true';
+    const isVisible = this.props.formValid === 'true';
 
     return (
       <div>
-        {toShow ? (
+        {isVisible ? (
           <div>
             <h2> Result </h2> <div className="panel panel-default"> </div>{' '}
             <p> First Name: {this.props.firstName} </p>{' '}
@@ -103,7 +103,5 @@ class DisplayCardInfo extends React.Component<Props, State> {
     );
   }
 }
-
-//defaultProps пишем полюбому даже с flow
 
 export default DisplayCardInfo;
