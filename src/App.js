@@ -12,14 +12,22 @@ if (process.env.NODE_ENV !== 'production') {
   whyDidYouRender(React);
 }
 
+// type Props = {
+//   updateData: (
+//     firstName: string,
+//     lastName: string,
+//     cardNunmber: string,
+//     formValid: string,
+//     paySystem: string,
+//   ) => void,
+// };
+
 type Props = {
-  updateData: (
-    firstName: string,
-    lastName: string,
-    cardNunmber: string,
-    formValid: string,
-    paySystem: string,
-  ) => void,
+  firstName: string,
+  lastName: string,
+  cardNunmber: string,
+  formValid: string,
+  paySystem: string,
 };
 
 type State = {
@@ -41,26 +49,30 @@ class CardApp extends React.Component<Props, State> {
 
   state = {};
 
-  updateData = (
-    firstName: string,
-    lastName: string,
-    cardNunmber: string,
-    formValid: string,
-    paySystem: string,
-  ) => {
-    //get
-    this.setState({
-      firstName: firstName,
-      lastName: lastName,
-      cardNunmber: cardNunmber,
-      formValid: formValid,
-      paySystem: paySystem,
-    });
-  };
+  // updateData = (
+  //   firstName: string,
+  //   lastName: string,
+  //   cardNunmber: string,
+  //   formValid: string,
+  //   paySystem: string,
+  // ) => {
+  //   //get
+  //   this.setState({
+  //     firstName: firstName,
+  //     lastName: lastName,
+  //     cardNunmber: cardNunmber,
+  //     formValid: formValid,
+  //     paySystem: paySystem,
+  //   });
+  // };
+
+  // componentDidUpdate = (prevProps: Props) => {
+  //   console.log(this.props)
+  // }
 
   render() {
     // console.log('(render) CardApp');
-    console.log(this.state);
+    //console.log(this.props);
     return (
       <div className="App container">
         {' '}
@@ -68,17 +80,11 @@ class CardApp extends React.Component<Props, State> {
           {' '}
           <div className="col-md-8">
             {' '}
-            <CardForm updateData={this.updateData} />{' '}
+            <CardForm />{' '}
           </div>{' '}
           <div className="col-md-4">
             {' '}
-            <DisplayCardInfo
-              firstName={this.state.firstName}
-              lastName={this.state.lastName}
-              cardNunmber={this.state.cardNunmber}
-              formValid={this.state.formValid}
-              paySystem={this.state.paySystem}
-            />{' '}
+            <DisplayCardInfo />{' '}
           </div>{' '}
         </div>{' '}
       </div>

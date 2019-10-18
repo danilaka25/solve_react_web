@@ -2,7 +2,9 @@
 // @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+// import { store } from '../configs/createStore';
 
 type Props = {
   firstName: string,
@@ -10,6 +12,7 @@ type Props = {
   cardNunmber: string,
   paySystem: string,
   formValid: string,
+  formData: any,
 };
 
 type State = {
@@ -19,7 +22,7 @@ type State = {
 };
 
 class DisplayCardInfo extends React.Component<Props, State> {
-  //static whyDidYouRender = true;
+  // static whyDidYouRender = true;
 
   static defaultProps = {
     cardNunmber: '0000 0000 0000 0000',
@@ -41,7 +44,7 @@ class DisplayCardInfo extends React.Component<Props, State> {
         timerId: undefined,
         startAt: undefined,
       });
-    }, 5000);
+    }, 3000);
     this.setState({
       visible: true,
       timerId,
@@ -51,9 +54,9 @@ class DisplayCardInfo extends React.Component<Props, State> {
 
   componentDidUpdate = (prevProps: Props) => {
     if (
-      prevProps.firstName === this.props.firstName &&
-      prevProps.lastName === this.props.lastName &&
-      prevProps.cardNunmber === this.props.cardNunmber
+      prevProps.formData.firstName === this.props.formData.firstName &&
+      prevProps.formData.lastName === this.props.formData.lastName &&
+      prevProps.formData.cardNunmber === this.props.formData.cardNunmber
     ) {
       return;
     }
@@ -68,40 +71,47 @@ class DisplayCardInfo extends React.Component<Props, State> {
   };
 
   render() {
-    //console.log('(render) DisplayCardInfo');
-
     if (!this.state.visible) {
       return null;
     }
 
-    const isVisible = this.props.formValid === 'true';
+    const isVisible = this.props.formData.formValid === 'true';
+
+    console.log(this.props.formData);
 
     return (
       <div>
         {isVisible ? (
           <div>
-            <h2> Result </h2> <div className="panel panel-default"> </div>{' '}
-            <p> First Name: {this.props.firstName} </p>{' '}
-            <p> Last Name: {this.props.lastName} </p>{' '}
+            <h2> Result </h2>
+            <div className="panel panel-default"> </div>
             <p>
-              {' '}
-              Card Nunmber: **** **** ****{' '}
-              {this.props.cardNunmber.substr(
-                this.props.cardNunmber.length - 4,
-              )}{' '}
-            </p>{' '}
-            <p> Pay System: {this.props.paySystem} </p>{' '}
+              First Name:
+              {this.props.formData.firstName}
+              Last Name:
+              {this.props.formData.lastName}
+            </p>
+            <p>
+              Card Nunmber: **** **** ****
+              {this.props.formData.cardNunmber.substr(
+                this.props.formData.cardNunmber.length - 4,
+              )}
+            </p>
+            <p> Pay System: {this.props.formData.paySystem} </p>
           </div>
         ) : (
           <div>
-            {' '}
-            <h2> Result </h2> <div className="panel panel-default"> </div>{' '}
-            <h3> Error </h3>{' '}
+            <h2> Result </h2> <div className="panel panel-default"> </div>
+            <h3> Error </h3>
           </div>
-        )}{' '}
+        )}
       </div>
     );
   }
 }
 
-export default DisplayCardInfo;
+const DisplayCardInfoContainer = connect(state => ({
+  formData: state.formReducer,
+}))(DisplayCardInfo);
+
+export default DisplayCardInfoContainer;

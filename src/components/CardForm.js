@@ -3,10 +3,11 @@
 
 import React from 'react';
 import CheckCard from './CheckCard';
-// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { onSubmit } from '../actions/onSubmit';
 
 type Props = {
-  updateData: (
+  onSubmit: (
     firstName: string,
     lastName: string,
     cardNunmber: string,
@@ -46,15 +47,15 @@ type State = {
 class CardForm extends React.Component<Props, State> {
   //static whyDidYouRender = true;
 
-  static defaultProps = {
-    cardNunmber: '0000 0000 0000 0000',
-    cardExpirationDate: 'MM/YYYY',
-    cvv: 'CVV',
-    firstName: 'First Name',
-    lastName: 'Last Name',
-    secretQuestion: 'Secret Question',
-    secretAnswer: 'Secret Answer',
-  };
+  // static defaultProps = {
+  //   cardNunmber: '0000 0000 0000 0000',
+  //   cardExpirationDate: 'MM/YYYY',
+  //   cvv: 'CVV',
+  //   firstName: 'First Name',
+  //   lastName: 'Last Name',
+  //   secretQuestion: 'Secret Question',
+  //   secretAnswer: 'Secret Answer',
+  // };
 
   constructor(props: Props) {
     super(props);
@@ -211,7 +212,7 @@ class CardForm extends React.Component<Props, State> {
   handleSubmit = (event: Object) => {
     event.preventDefault();
     if (
-      this.state.cardNunmberValid &&
+      // this.state.cardNunmberValid &&
       // this.state.cardExpirationDateValid &&
       // this.state.cvvValid &&
       this.state.firstNameValid &&
@@ -225,7 +226,15 @@ class CardForm extends React.Component<Props, State> {
           formValid: 'true',
         },
         function() {
-          this.props.updateData(
+          // this.props.updateData(
+          //   this.state.firstName,
+          //   this.state.lastName,
+          //   this.state.cardNunmber,
+          //   this.state.formValid,
+          //   this.state.paySystem,
+          // );
+
+          this.props.onSubmit(
             this.state.firstName,
             this.state.lastName,
             this.state.cardNunmber,
@@ -240,10 +249,18 @@ class CardForm extends React.Component<Props, State> {
           formValid: 'false',
         },
         function() {
-          this.props.updateData(this.state.formValid);
+          this.props.onSubmit(
+            this.state.firstName,
+            this.state.lastName,
+            this.state.cardNunmber,
+            this.state.formValid,
+            this.state.paySystem,
+          );
         },
       );
     }
+
+    // console.log(this.props.onSubmit())
   };
 
   errorClass(error: Object) {
@@ -390,4 +407,17 @@ class CardForm extends React.Component<Props, State> {
   }
 }
 
-export default CardForm;
+const FormContainer = connect(
+  state => ({
+    //value_1: state.counterReducer,
+    form: state.formReducer,
+  }),
+  {
+    // addValue,
+    onSubmit,
+  },
+)(CardForm);
+
+//export default Component4Container
+
+export default FormContainer;
